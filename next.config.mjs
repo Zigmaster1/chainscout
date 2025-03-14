@@ -2,12 +2,12 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: [
-      'uploads-ssl.webflow.com',
-      'cdn.prod.website-files.com',
-      'docs.inkonchain.com',
-      'haust.network',
-    ],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: '**',
+      },
+    ]
   },
   webpack(config) {
     const fileLoaderRule = config.module.rules.find(

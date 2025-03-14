@@ -1,6 +1,7 @@
 import { ChainData } from '@/types';
 import Image from 'next/image';
 import Link from 'next/link';
+import React from 'react';
 import { HOSTING_PROVIDERS, HostingProvider, ROLLUP_TYPES, RollupType } from '@/utils/constants';
 import LinkIcon from '@/public/link.svg';
 
@@ -12,6 +13,7 @@ const hostingColors: Record<HostingProvider, { bg: string; text: string }> = {
   'protofire': { bg: '#faa807', text: '#1c1e24' },
   'gateway': { bg: '#9368E8', text: '#ffffff' },
   'self': { bg: '#c2d9ff', text: '#003180' },
+  'alchemy': { bg: '#363FF9', text: '#ffffff' },
 };
 
 const Tag = ({ children }: { children: string }) => (
@@ -84,7 +86,7 @@ export default function ChainCard({
             { href: website, text: 'Project Website' },
             { href: url, text: 'Blockscout Explorer' },
           ].map(({ href, text }, index, array) => (
-            <>
+            <React.Fragment key={index}>
               <Link href={href} className="group/link flex items-center justify-between py-3" target="_blank" rel="noopener">
                 <span className="text-sm font-medium text-black group-hover/link:text-blue-600 transition-colors duration-[400ms]">
                   {text}
@@ -92,7 +94,7 @@ export default function ChainCard({
                 <LinkIcon className="flex-shrink-0 text-[#B1B5C3] group-hover/link:text-blue-600 transition-colors duration-[400ms]"/>
               </Link>
               {index < array.length - 1 && <div className="border-t border-gray-200 my-3"></div>}
-            </>
+            </React.Fragment>
           ))}
         </div>
       </div>
